@@ -1,11 +1,9 @@
 <template>
-  <article>
-    <header class="header-wrapper d-flex flex-row">
-      <HeaderHome/>
-      <HeaderSearch/>
-      <HeaderAccount/>
-    </header>
-  </article>
+  <header class="header-wrapper d-flex flex-row">
+    <HeaderHome/>
+    <HeaderSearch/>
+    <HeaderAccount/>
+  </header>
 </template>
 
 <script setup lang="ts">

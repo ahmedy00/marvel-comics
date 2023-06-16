@@ -1,11 +1,17 @@
 <template>
   <div class="header-home d-flex align-center justify-center flex-row">
-    <div class="image ml-4">
-      <img style="margin-left: 0" width="100" height="40" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Marvel_Logo.svg/2560px-Marvel_Logo.svg.png" alt="marvel-logo"/>
-    </div>
-    <div class="routes d-flex flex-row">
-      <div class="font mr-4">Comics</div>
-      <div class="font ml-4">Favourites</div>
+    <RouterLink :to="{name: 'Home'}">
+      <div class="image ml-4">
+        <img style="margin-left: 0" width="100" height="40" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Marvel_Logo.svg/2560px-Marvel_Logo.svg.png" alt="marvel-logo"/>
+      </div>
+    </RouterLink>
+    <div class="routes d-flex flex-row ml-4">
+      <RouterLink :to="{name: 'Comics'}">
+        <div class="font mr-4">Comics</div>
+      </RouterLink>
+      <RouterLink :to="{name: 'Favourites'}">
+        <div class="font ml-4">Favourites</div>
+      </RouterLink>
     </div>
   </div>
 </template>
