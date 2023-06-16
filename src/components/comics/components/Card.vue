@@ -45,20 +45,17 @@ const creators: Ref<ItemsType[]> | undefined = ref(props.comic.creators?.items |
 const isAddedFavourite: Ref<boolean> = ref(false)
 
 const addToFavourites = () => {
-  console.log('isAddedFavourite.value', isAddedFavourite.value)
   if (!isAddedFavourite.value) {
     store.commit('addToFavouriteComic', props.comic.id)
   } else {
     store.commit('removeFromFavourites', props.comic.id)
   }
   isAddedFavourite.value = !isAddedFavourite.value
-  console.log('store', store.getters.getFavouriteComics)
 }
 
 
 onBeforeMount(() => {
   const favouriteComics: string[] = store.state.favouriteComics
-  console.log('favouriteComics', favouriteComics)
   favouriteComics.map((comic) => {
     isAddedFavourite.value = comic === props.comic.id
   })
