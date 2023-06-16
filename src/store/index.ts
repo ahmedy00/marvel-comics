@@ -1,6 +1,8 @@
 import { createStore } from 'vuex'
+import createPersistedState from 'vuex-plugin-persistedstate'
 
 const store = createStore({
+    plugins: [createPersistedState()],
     state: {
         // FIXME: Need better type declaration
         comicsList: [] as any
