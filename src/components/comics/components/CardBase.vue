@@ -1,6 +1,6 @@
 <template>
   <div class="cards-wrapper">
-    <div class="pa-4" v-for="(comic, index) in comics" :key="index">
+    <div class="pa-2" v-for="(comic, index) in comics" :key="index">
       <Card :comic="comic"/>
     </div>
   </div>
