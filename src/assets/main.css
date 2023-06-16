@@ -1,4 +1,6 @@
 @import './base.css';
+@import './spaces.css';
+@import './grid.css';
 
 #app {
   max-width: 1280px;
@@ -13,26 +15,6 @@ a,
   text-decoration: none;
   color: hsla(160, 100%, 37%, 1);
   transition: 0.4s;
-}
-
-.d-flex {
-  display: flex;
-}
-
-.align-center {
-  align-items: center;
-}
-
-.justify-center {
-  justify-content: center;
-}
-
-.flex-row {
-  flex-direction: row;
-}
-
-.flex-column {
-  flex-direction: column;
 }
 
 @media (hover: hover) {
