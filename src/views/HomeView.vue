@@ -1,8 +1,9 @@
 <template>
-  <div>x</div>
+  <HeaderBase/>
 </template>
 
 <script setup lang="ts">
+import HeaderBase from '@/components/header/HeaderBase.vue'
 
 </script>
 
