@@ -23,6 +23,7 @@ import HeaderAccount from '@/components/header/components/HeaderAccount.vue'
   width: 100%;
   height: 4rem;
   background: #EC1D24;
+  z-index: 999;
 }
 
 </style>
