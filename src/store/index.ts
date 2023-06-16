@@ -1,16 +1,15 @@
 import { createStore } from 'vuex'
 import createPersistedState from 'vuex-plugin-persistedstate'
+import type { ComicsType } from '@/types'
 
 const store = createStore({
     plugins: [createPersistedState()],
     state: {
-        // FIXME: Need better type declaration
-        comicsList: [] as any,
+        comicsList: [] as ComicsType[],
         favouriteComics: [] as string[]
     },
     mutations: {
-        // FIXME: Need better type declaration
-        setComicsList (state, list: any) {
+        setComicsList (state, list: ComicsType[]) {
             state.comicsList = list
         },
         addToFavouriteComic (state, comicId: string) {
