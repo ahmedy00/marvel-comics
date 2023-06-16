@@ -9,7 +9,7 @@ import CardBase from '@/components/comics/components/CardBase.vue'
 import axios from 'axios'
 import md5 from 'md5'
 import { useStore } from 'vuex'
-import { onBeforeMount, ref } from 'vue'
+import { onBeforeMount } from 'vue'
 
 const store = useStore()
 
