@@ -9,9 +9,10 @@
 <script setup lang="ts">
 import Card from '@/components/comics/components/Card.vue'
 import { useStore } from 'vuex'
+import type { ComicsType } from '@/types'
 
 const store = useStore()
-const comics = store.getters.getComicsList
+const comics: ComicsType[] = store.getters.getComicsList
 
 </script>
 

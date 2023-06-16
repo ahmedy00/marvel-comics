@@ -31,16 +31,16 @@
 <script setup lang="ts">
 import {onBeforeMount, Ref, ref} from 'vue'
 import { useStore } from 'vuex'
+import ItemsType from '@/types/comics/creators/items'
 
 const props = defineProps(['comic'])
-// console.log('comic', props.comic.id)
 const store = useStore()
 
 const imageSource: string = props.comic.thumbnail.path + '.' + props.comic.thumbnail.extension
 
 const description: string = props.comic.description || 'No description available for this comic'
 
-const creators: object[] = props.comic.creators?.items
+const creators: Ref<ItemsType[]> | undefined = ref(props.comic.creators?.items || [])
 
 const isAddedFavourite: Ref<boolean> = ref(false)
 
