@@ -21,6 +21,10 @@
   margin: 16px !important;
 }
 
+.ma-a {
+  margin: auto !important;
+}
+
 /*-------------- Margin Left --------------*/
 .ml-0 {
   margin-left: 0 !important;
@@ -40,6 +44,10 @@
 
 .ml-4 {
   margin-left: 16px !important;
+}
+
+.ml-a {
+  margin-left: auto !important;
 }
 
 /*-------------- Margin Right --------------*/
@@ -63,6 +71,10 @@
   margin-right: 16px !important;
 }
 
+.mr-a {
+  margin-right: auto !important;
+}
+
 /*-------------- Margin Top --------------*/
 .mt-0 {
   margin-top: 0 !important;
@@ -84,6 +96,10 @@
   margin-top: 16px !important;
 }
 
+.mt-a {
+  margin-top: auto !important;
+}
+
 /*-------------- Margin Bottom --------------*/
 .mb-0 {
   margin-bottom: 0 !important;
@@ -103,6 +119,10 @@
 
 .mb-4 {
   margin-bottom: 16px !important;
+}
+
+.mb-a {
+  margin-bottom: auto !important;
 }
 
 /*-------------- Padding All --------------*/
