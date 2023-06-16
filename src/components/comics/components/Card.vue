@@ -1,5 +1,10 @@
 <template>
   <div class="card pa-2">
+    <div class="favourite" style="position:absolute;">
+      <button class="favourite-button" @click="addToFavourites">
+        <i :style="{color: isAddedFavourite ? 'red' : 'white', fontSize: '20px'}" class="fa fa-heart" aria-hidden="true"></i>
+      </button>
+    </div>
     <div class="d-flex align-center justify-center">
       <img :src="imageSource" alt="" :width="200" :height="200">
     </div>
@@ -24,15 +29,40 @@
 </template>
 
 <script setup lang="ts">
+import {onBeforeMount, Ref, ref} from 'vue'
+import { useStore } from 'vuex'
 
 const props = defineProps(['comic'])
-console.log('props', props.comic.creators.items)
+// console.log('comic', props.comic.id)
+const store = useStore()
 
 const imageSource: string = props.comic.thumbnail.path + '.' + props.comic.thumbnail.extension
 
 const description: string = props.comic.description || 'No description available for this comic'
 
-const creators: string = props.comic.creators?.items
+const creators: object[] = props.comic.creators?.items
+
+const isAddedFavourite: Ref<boolean> = ref(false)
+
+const addToFavourites = () => {
+  console.log('isAddedFavourite.value', isAddedFavourite.value)
+  if (!isAddedFavourite.value) {
+    store.commit('addToFavouriteComic', props.comic.id)
+  } else {
+    store.commit('removeFromFavourites', props.comic.id)
+  }
+  isAddedFavourite.value = !isAddedFavourite.value
+  console.log('store', store.getters.getFavouriteComics)
+}
+
+
+onBeforeMount(() => {
+  const favouriteComics: string[] = store.state.favouriteComics
+  console.log('favouriteComics', favouriteComics)
+  favouriteComics.map((comic) => {
+    isAddedFavourite.value = comic === props.comic.id
+  })
+})
 
 </script>
 
@@ -48,6 +78,16 @@ const creators: string = props.comic.creators?.items
 .card img {
   border-radius: 50%;
   border: 5px solid #EC1D24;
+}
+
+.favourite {
+  float: right;
+}
+
+.favourite-button {
+  border: none;
+  background: transparent;
+  cursor: pointer;
 }
 
 .name-font {
