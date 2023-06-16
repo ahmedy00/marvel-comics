@@ -14,7 +14,7 @@ import { onBeforeMount } from 'vue'
 const store = useStore()
 
 onBeforeMount(() => {
-  axios.get(`${config.baseURL}/characters`, {
+  axios.get(`${config.baseURL}/comics`, {
     params: {
       apikey: config.publicKey,
       ts: Date.now(),
@@ -35,8 +35,7 @@ onBeforeMount(() => {
   position: absolute;
   top: 4rem;
   left: 0;
-  width: 70vw;
-  margin-left: 15vw;
+  padding: 2rem;
 }
 
 </style>
