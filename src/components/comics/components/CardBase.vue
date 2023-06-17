@@ -1,7 +1,7 @@
 <template>
   <div class="cards-wrapper">
     <div class="pa-2" v-for="(comic, index) in comics" :key="index">
-      <Card :comic="comic"/>
+      <Card :comic="comic" :is-creator-visible="true"/>
     </div>
   </div>
 </template>

@@ -1,12 +1,12 @@
 <template>
-  <div class="card pa-2">
-    <div class="favourite" style="position:absolute;">
+  <div class="card pa-2" :style="{maxWidth: `${cardMaxWidth}px`, maxHeight: `${cardMaxHeight}px`}">
+    <div class="favourite">
       <button class="favourite-button" @click="addToFavourites">
         <i :style="{color: isAddedFavourite ? 'red' : 'white', fontSize: '20px'}" class="fa fa-heart" aria-hidden="true"></i>
       </button>
     </div>
     <div class="d-flex align-center justify-center">
-      <img :src="imageSource" alt="" :width="200" :height="200">
+      <img :src="imageSource" alt="" :width="imageWidth || 200" :height="imageWidth || 200">
     </div>
     <div class="name-font pt-4">
       <span>{{ comic.title }}</span>
@@ -15,7 +15,7 @@
       <span>{{ description }}</span>
     </div>
     <div class="creator mr-0">
-      <div v-if="creators.length" class="d-flex flex-column">
+      <div v-if="!!creators?.length && isCreatorVisible" class="d-flex flex-column">
         <span class="text-center mb-1 pr-1 pl-1">Created by </span>
         <ul>
           <li v-for="(creator, index) in creators" :key="index">
@@ -23,7 +23,7 @@
           </li>
         </ul>
       </div>
-      <div class="text-center" v-else>Unknown Creator</div>
+      <div class="text-center" v-if="!creators?.length && isCreatorVisible">Unknown Creator</div>
     </div>
   </div>
 </template>
@@ -32,9 +32,12 @@
 import {onBeforeMount, Ref, ref} from 'vue'
 import { useStore } from 'vuex'
 import ItemsType from '@/types/comics/creators/items'
+import type { ComicsType } from '@/types'
 
-const props = defineProps(['comic'])
+const props = defineProps(['comic', 'imageWidth', 'isCreatorVisible', 'cardMaxWidth', 'cardMaxHeight'])
 const store = useStore()
+
+console.log('visible', props.isCreatorVisible)
 
 const imageSource: string = props.comic.thumbnail.path + '.' + props.comic.thumbnail.extension
 
@@ -46,7 +49,7 @@ const isAddedFavourite: Ref<boolean> = ref(false)
 
 const addToFavourites = () => {
   if (!isAddedFavourite.value) {
-    store.commit('addToFavouriteComic', props.comic.id)
+    store.commit('addToFavouriteComic', props.comic)
   } else {
     store.commit('removeFromFavourites', props.comic.id)
   }
@@ -55,9 +58,9 @@ const addToFavourites = () => {
 
 
 onBeforeMount(() => {
-  const favouriteComics: string[] = store.state.favouriteComics
-  favouriteComics.map((comic) => {
-    isAddedFavourite.value = comic === props.comic.id
+  const favouriteComics: ComicsType[] = store.state.favouriteComics
+  favouriteComics.map((comic: ComicsType) => {
+    isAddedFavourite.value = comic.id === props.comic.id
   })
 })
 
@@ -79,6 +82,7 @@ onBeforeMount(() => {
 
 .favourite {
   float: right;
+  position: absolute;
 }
 
 .favourite-button {
