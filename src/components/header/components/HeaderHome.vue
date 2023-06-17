@@ -10,13 +10,19 @@
         <div class="font mr-4">Comics</div>
       </RouterLink>
       <RouterLink :to="{name: 'Favourites'}">
-        <div class="font ml-4">Favourites</div>
+        <div class="font ml-4">Favourites {{ '(' + favouritesLength + ')'}}</div>
       </RouterLink>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
+import { useStore } from 'vuex'
+import { Ref, ref } from 'vue'
+
+const store = useStore()
+
+const favouritesLength: Ref<number> = ref(store.state.favouriteComics.length || 0)
 
 </script>
 
