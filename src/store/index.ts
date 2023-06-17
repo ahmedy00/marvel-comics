@@ -6,17 +6,17 @@ const store = createStore({
     plugins: [createPersistedState()],
     state: {
         comicsList: [] as ComicsType[],
-        favouriteComics: [] as string[]
+        favouriteComics: [] as ComicsType[]
     },
     mutations: {
         setComicsList (state, list: ComicsType[]) {
             state.comicsList = list
         },
-        addToFavouriteComic (state, comicId: string) {
-            state.favouriteComics.push(comicId)
+        addToFavouriteComic (state, comic: ComicsType) {
+            state.favouriteComics.push(comic)
         },
-        removeFromFavourites (state, comicId: string) {
-            const index = state.favouriteComics.indexOf(comicId)
+        removeFromFavourites (state, comic: ComicsType) {
+            const index = state.favouriteComics.indexOf(comic)
             if (index > -1) {
                 state.favouriteComics.splice(index, 1)
             }
