@@ -18,11 +18,13 @@
 
 <script setup lang="ts">
 import { useStore } from 'vuex'
-import { Ref, ref } from 'vue'
+import { computed, ComputedRef } from 'vue'
 
 const store = useStore()
 
-const favouritesLength: Ref<number> = ref(store.state.favouriteComics.length || 0)
+const favouritesLength: ComputedRef<number> = computed(() => {
+  return store.state.favouriteComics.length || 0
+})
 
 </script>
 
