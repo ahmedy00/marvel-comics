@@ -15,9 +15,11 @@ const store = createStore({
         addToFavouriteComic (state, comic: ComicsType) {
             state.favouriteComics.push(comic)
         },
-        removeFromFavourites (state, comic: ComicsType) {
-            const index = state.favouriteComics.indexOf(comic)
-            if (index > -1) {
+        removeFromFavourites (state, comicId: string) {
+            const index = state.favouriteComics.findIndex((favourite: ComicsType) => {
+                return favourite.id === comicId
+            })
+            if (index !== -1) {
                 state.favouriteComics.splice(index, 1)
             }
         }
