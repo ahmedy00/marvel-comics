@@ -10,7 +10,11 @@
         <div class="font mr-4">Comics</div>
       </RouterLink>
       <RouterLink :to="{name: 'Favourites'}">
-        <div class="font ml-4">Favourites {{ '(' + favouritesLength + ')'}}</div>
+        <div class="font ml-4 d-flex flex-row">
+          <span>Favourites</span>
+          <i class="favourite-icon fa fa-heart ml-2 mt-1" aria-hidden="true"></i>
+          <span class="badge">{{ favouritesLength }}</span>
+        </div>
       </RouterLink>
     </div>
   </div>
@@ -37,6 +41,23 @@ const favouritesLength: ComputedRef<number> = computed(() => {
 
 .image {
   width: 30%;
+}
+
+.favourite-icon {
+  color: #FFA500;
+  z-index: 2;
+}
+
+.badge {
+  background-color: #EC1D24;
+  color: white;
+  padding: 0 5px;
+  text-align: center;
+  position: absolute;
+  left: 20vw;
+  top: 25px;
+  z-index: 1;
+  font: 700 1.1rem RobotoCondensed Bold,Trebuchet MS,Helvetica,Arial,sans-serif;
 }
 
 .routes {
