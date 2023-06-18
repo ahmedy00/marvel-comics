@@ -5,7 +5,7 @@
         <img style="margin-left: 0" width="100" height="40" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Marvel_Logo.svg/2560px-Marvel_Logo.svg.png" alt="marvel-logo"/>
       </div>
     </RouterLink>
-    <div class="routes d-flex flex-row ml-4">
+    <div class="routes d-flex flex-row align-center ml-4">
       <RouterLink :to="{name: 'Comics'}">
         <div class="font mr-4">Comics</div>
       </RouterLink>
@@ -53,15 +53,15 @@ const favouritesLength: ComputedRef<number> = computed(() => {
   color: white;
   padding: 0 5px;
   text-align: center;
-  position: absolute;
-  left: 20vw;
-  top: 25px;
   z-index: 1;
   font: 700 1.1rem RobotoCondensed Bold,Trebuchet MS,Helvetica,Arial,sans-serif;
+  margin-top: -7px;
+  margin-left: -3px !important;
 }
 
 .routes {
   width: 70%;
+  height: 100%;
 }
 
 .font {
