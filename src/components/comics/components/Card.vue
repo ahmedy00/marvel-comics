@@ -48,6 +48,7 @@ const isAddedFavourite = computed(() => {
 })
 
 const addToFavourites = () => {
+  // FIXME: There is an issue, after refreshing the page, the favorite list is not showing properly. Only includes the last selected favorite in the list
   if (!isAddedFavourite.value) {
     store.commit('addToFavouriteComic', props.comic)
   } else {
