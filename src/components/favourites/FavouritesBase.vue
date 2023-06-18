@@ -34,6 +34,12 @@ const favourites: ComicsType[] = ref(store.getters.getFavouriteComics)
   padding: 2rem;
 }
 
+@media (max-width: 1200px) {
+  .favourites-wrapper {
+    grid-template-columns: auto auto auto;
+  }
+}
+
 @media (max-width: 992px) {
   .favourites-wrapper {
     grid-template-columns: auto auto;
