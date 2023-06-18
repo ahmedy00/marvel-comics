@@ -1,12 +1,17 @@
 <template>
-  <div class="favourites-wrapper">
-    <div class="pa-2" v-for="(favourite, index) in favourites" :key="index">
-      <Card
-        :comic="favourite"
-        :image-width="100"
-        :card-max-width="400"
-        :card-max-height="500"
-      />
+  <div class="favourites-wrapper d-flex align-center">
+    <template v-if="!!favourites.length">
+      <div class="pa-2 ma-a" v-for="(favourite, index) in favourites" :key="index">
+        <Card
+          :comic="favourite"
+          :image-width="400"
+          :card-max-width="500"
+          :card-max-height="800"
+        />
+    </div>
+    </template>
+    <div class="warning mt-4" v-else>
+      There is no comic in your favourite list.
     </div>
   </div>
 </template>
@@ -14,12 +19,11 @@
 <script setup lang="ts">
 import Card from '@/components/comics/components/Card.vue'
 import { useStore } from 'vuex'
-import { ref } from 'vue'
 import type { ComicsType } from '@/types'
 
 const store = useStore()
 
-const favourites: ComicsType[] = ref(store.getters.getFavouriteComics)
+const favourites: ComicsType[] = store.getters.getFavouriteComics
 
 </script>
 
@@ -27,11 +31,17 @@ const favourites: ComicsType[] = ref(store.getters.getFavouriteComics)
 
 .favourites-wrapper {
   display: grid;
-  grid-template-columns: repeat(6, auto);
-  position: absolute;
-  top: 4rem;
-  left: 0;
+  grid-template-columns: auto;
+  margin-top: 4rem;
+  width: 95vw;
   padding: 2rem;
+}
+
+.warning {
+  width: 100vw;
+  color: white;
+  font: 400 1.1rem RobotoCondensed Bold,Trebuchet MS,Helvetica,Arial,sans-serif;
+  text-align: center;
 }
 
 @media (max-width: 1200px) {
