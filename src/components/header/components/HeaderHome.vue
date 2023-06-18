@@ -23,7 +23,7 @@ import { computed, ComputedRef } from 'vue'
 const store = useStore()
 
 const favouritesLength: ComputedRef<number> = computed(() => {
-  return store.state.favouriteComics.length || 0
+  return store.getters.getFavouriteComics.length || 0
 })
 
 </script>
