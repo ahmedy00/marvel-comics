@@ -2,7 +2,7 @@
   <div class="card pa-2" :style="{height: `${cardMaxHeight}px`, width: `${cardMaxWidth}px`}">
     <div v-if="isCreatorVisible" class="favourite">
       <button class="favourite-button" @click="addToFavourites">
-        <i :style="{color: isAddedFavourite ? 'red' : 'white', fontSize: '20px'}" class="fa fa-heart" aria-hidden="true"></i>
+        <i :style="{color: isAddedFavourite ? '#FFA500' : 'white', fontSize: '20px'}" class="fa fa-heart" aria-hidden="true"></i>
       </button>
     </div>
     <div class="d-flex align-center justify-center">
