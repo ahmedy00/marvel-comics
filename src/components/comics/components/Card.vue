@@ -1,6 +1,6 @@
 <template>
-  <div class="card pa-2" :style="{maxWidth: `${cardMaxWidth}px`, maxHeight: `${cardMaxHeight}px`}">
-    <div class="favourite">
+  <div class="card pa-2" :style="{height: `${cardMaxHeight}px`, width: `${cardMaxWidth}px`}">
+    <div v-if="isCreatorVisible" class="favourite">
       <button class="favourite-button" @click="addToFavourites">
         <i :style="{color: isAddedFavourite ? 'red' : 'white', fontSize: '20px'}" class="fa fa-heart" aria-hidden="true"></i>
       </button>
@@ -12,9 +12,9 @@
       <span>{{ comic.title }}</span>
     </div>
     <div class="description-font pt-4 pl-4 pr-4">
-      <span>{{ description }}</span>
+      <span style="overflow: hidden; text-overflow: ellipsis;">{{ description }}</span>
     </div>
-    <div class="creator mr-0">
+    <div class="creator mr-0 mt-2">
       <div v-if="!!creators?.length && isCreatorVisible" class="d-flex flex-column">
         <span class="text-center mb-1 pr-1 pl-1">Created by </span>
         <ul>
@@ -29,23 +29,23 @@
 </template>
 
 <script setup lang="ts">
-import {onBeforeMount, Ref, ref} from 'vue'
-import { useStore } from 'vuex'
+import {computed, Ref, ref} from 'vue'
 import ItemsType from '@/types/comics/creators/items'
-import type { ComicsType } from '@/types'
+import store from '@/store'
 
 const props = defineProps(['comic', 'imageWidth', 'isCreatorVisible', 'cardMaxWidth', 'cardMaxHeight'])
-const store = useStore()
 
-console.log('visible', props.isCreatorVisible)
-
-const imageSource: string = props.comic.thumbnail.path + '.' + props.comic.thumbnail.extension
+const imageSource: string = `${props.comic.thumbnail?.path}.${props.comic.thumbnail?.extension}`
 
 const description: string = props.comic.description || 'No description available for this comic'
 
 const creators: Ref<ItemsType[]> | undefined = ref(props.comic.creators?.items || [])
 
-const isAddedFavourite: Ref<boolean> = ref(false)
+const isAddedFavourite = computed(() => {
+  return store.getters.getFavouriteComics.some((favourite) => {
+    return favourite.id === props.comic.id
+  })
+})
 
 const addToFavourites = () => {
   if (!isAddedFavourite.value) {
@@ -53,16 +53,9 @@ const addToFavourites = () => {
   } else {
     store.commit('removeFromFavourites', props.comic.id)
   }
-  isAddedFavourite.value = !isAddedFavourite.value
 }
 
 
-onBeforeMount(() => {
-  const favouriteComics: ComicsType[] = store.state.favouriteComics
-  favouriteComics.map((comic: ComicsType) => {
-    isAddedFavourite.value = comic.id === props.comic.id
-  })
-})
 
 </script>
 
@@ -83,6 +76,7 @@ onBeforeMount(() => {
 .favourite {
   float: right;
   position: absolute;
+  display: inline-block;
 }
 
 .favourite-button {
@@ -94,13 +88,14 @@ onBeforeMount(() => {
 .name-font {
   text-align: center;
   color: #f2f2f2;
-  height: 70px;
+  height: 80px;
   font: 800 22px/1 "RobotoCondensed","Trebuchet MS",Helvetica,Arial,sans-serif;
 }
 
 .description-font {
   color: #f2f2f2;
-  height: 175px;
+  height: 170px;
+  overflow: hidden;
   font: 100 14px/1 "RobotoCondensed","Trebuchet MS",Helvetica,Arial,sans-serif;
 }
 
