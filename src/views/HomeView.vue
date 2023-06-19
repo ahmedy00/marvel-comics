@@ -1,6 +1,8 @@
 <template>
-  <HeaderBase/>
-  <RouterView/>
+  <div class="d-flex flex-column">
+    <HeaderBase/>
+    <RouterView/>
+  </div>
 </template>
 
 <script setup lang="ts">
