@@ -1,11 +1,13 @@
 <template>
   <div class="comics-wrapper">
+    <HeaderImage/>
     <CardBase/>
   </div>
 </template>
 
 <script setup lang="ts">
 import CardBase from '@/components/comics/components/CardBase.vue'
+import HeaderImage from '@/components/header/components/HeaderImage.vue'
 import axios from 'axios'
 import { config, generateHash } from '@/config/config'
 import { useStore } from 'vuex'
@@ -32,9 +34,7 @@ onBeforeMount(() => {
 <style scoped>
 
 .comics-wrapper {
-  position: absolute;
-  top: 5.5rem;
-  left: 0;
+  width: 95vw;
   padding: 2rem;
 }
 
