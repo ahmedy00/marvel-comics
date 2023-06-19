@@ -5,7 +5,7 @@
         <i :style="{color: isAddedFavourite ? '#FFA500' : 'white', fontSize: '20px'}" class="fa fa-heart" aria-hidden="true"></i>
       </button>
     </div>
-    <div class="d-flex align-center justify-center">
+    <div class="d-flex align-center justify-center" style="cursor: pointer" @click="routeToDetails">
       <img :src="imageSource" alt="" :width="imageWidth || 200" :height="imageWidth || 200">
     </div>
     <div class="name-font pt-4">
@@ -29,9 +29,10 @@
 </template>
 
 <script setup lang="ts">
-import {computed, Ref, ref} from 'vue'
+import { computed, Ref, ref } from 'vue'
 import ItemsType from '@/types/comics/creators/items'
 import store from '@/store'
+import router from '@/router'
 
 const props = defineProps(['comic', 'imageWidth', 'isCreatorVisible', 'cardMaxWidth', 'cardMaxHeight'])
 
@@ -56,6 +57,14 @@ const addToFavourites = () => {
   }
 }
 
+const routeToDetails = () => {
+  router.push({
+    name: 'ComicDetail',
+    params: {
+      id: props.comic.id
+    }
+  })
+}
 
 
 </script>
