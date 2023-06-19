@@ -11,6 +11,7 @@ module.exports = {
   ],
   rules: {
     'vue/multi-word-component-names': 'off',
+    "object-curly-spacing": ["error", "always"],
     quotes: ['error', 'single'],
     semi: ['error', 'never'],
     'prefer-const': ['error', {
