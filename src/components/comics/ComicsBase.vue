@@ -33,7 +33,7 @@ onBeforeMount(() => {
 
 .comics-wrapper {
   position: absolute;
-  top: 4rem;
+  top: 5.5rem;
   left: 0;
   padding: 2rem;
 }
